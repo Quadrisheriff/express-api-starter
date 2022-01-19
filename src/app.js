@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 
 require('lightrun').start({
-    lightrunSecret: 'c4bd9b5c-171c-4592-a1bd-8d5063296841',
+    lightrunSecret: '',
     company: 'sheriff',
 });
 
