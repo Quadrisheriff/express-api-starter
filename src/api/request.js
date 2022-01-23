@@ -1,14 +1,30 @@
 var express = require('express');
 var router = express.Router();
+var customAxios = require('./customAxios');
 var axios = require('axios');
+var FormData = require('form-data');
+var fs = require('fs');
+const multer = require("multer");
+const getStream = require('get-stream')
+const storage = multer.memoryStorage()
+const upload = multer({ storage: storage })
 
-router.get('/', (req, res, next) => {
-    axios.get('https://s3.amazonaws.com/data-production-walltime-info/production/dynamic/walltime-info.json?now=1528962473468.679.0000000000873')
+router.post('/upload', upload.single("file"), async function (req, res) {
+
+    const form = new FormData();
+    const file = req.file;
+    form.append('file', file.buffer, file.originalname);
+    
+    await axios.post('https://store1.gofile.io/uploadFile', form, {
+        headers: {
+            ...form.getHeaders()
+        }
+    })
         .then(response =>
-            res.json(response.data),
+            res.json(response.data)
         )
         .catch(error =>
-            next(error)
+            console.log(error)
         );
 
 })

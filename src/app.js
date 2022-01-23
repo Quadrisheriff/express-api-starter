@@ -2,6 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
 require('lightrun').start({
     lightrunSecret: '',
@@ -14,7 +16,6 @@ const middlewares = require('./middlewares');
 const request = require('./api/request');
 
 const app = express();
-
 app.use(morgan('dev'));
 app.use(helmet());
 app.use(cors());
