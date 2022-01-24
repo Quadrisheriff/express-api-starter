@@ -17,14 +17,14 @@ router.post('/upload', upload.single("file"), async function (req, res) {
     
     await axios.post('https://store1.gofile.io/uploadFile', form, {
         headers: {
-            ...form.getHeaders()
+            'Content-Type': 'multipart/form-data'
         }
     })
         .then(response =>
             res.json(response.data)
         )
         .catch(error =>
-            console.log(error)
+            res.json(error.message)
         );
 
 })

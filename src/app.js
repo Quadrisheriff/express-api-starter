@@ -6,7 +6,7 @@ const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 
 require('lightrun').start({
-    lightrunSecret: '',
+    lightrunSecret: 'c4bd9b5c-171c-4592-a1bd-8d5063296841',
     company: 'sheriff',
 });
 
